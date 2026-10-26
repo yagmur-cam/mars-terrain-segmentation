@@ -1,11 +1,9 @@
 # AI4Mars Navcam dataset: builds image/label pairs and loads them as PyTorch tensors
 
-
 import numpy as np 
 import torch
 from torch.utils.data import Dataset
 from PIL import Image 
-
 
 class MarsTerrainDataset(Dataset):
     def __init__(self, pairs, size=512): # receives the list of (image path, label path) pairs and the target size (512), and stores them
