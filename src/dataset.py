@@ -1,5 +1,6 @@
 # AI4Mars Navcam dataset: builds image/label pairs and loads them as PyTorch tensors
 
+import random 
 import numpy as np 
 import torch
 from torch.utils.data import Dataset
@@ -47,3 +48,10 @@ def build_pairs(img_dir, lbl_dir): # builds the pair list, matching names
 
     return pairs 
 
+def split_pairs(pairs, val_fraction=0.1, seed=0):
+    rng = random.Random(seed) # from the random module, create a Random object with this seed
+    shuffled = list(pairs)
+    rng.shuffle(shuffled)
+
+    n_val = int(len(pairs) * val_fraction)
+    return shuffled[n_val:], shuffled[:n_val] # train, validation
