@@ -1,4 +1,4 @@
-# the confusion matrix and IoU functions
+"""The confusion matrix and IoU functions"""
 
 import torch 
 

@@ -1,4 +1,4 @@
-# AI4Mars Navcam dataset: builds image/label pairs and loads them as PyTorch tensors
+"""AI4Mars Navcam dataset: builds image/label pairs and loads them as PyTorch tensors"""
 
 import random 
 import numpy as np 
