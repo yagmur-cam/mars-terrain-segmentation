@@ -26,7 +26,7 @@ def save_checkpoint(path, model, optimizer, epoch, best_miou):
 
 
 def main():
-     # 1. settings: data path, image size, batch size, learning rate, epochs, output folder
+    # 1. settings: data path, image size, batch size, learning rate, epochs, output folder
     # 2. device (GPU if available)
     # 3. build pairs → split → datasets → DataLoaders
     # 4. model, loss (ignore_index=255), optimizer, LR scheduler
