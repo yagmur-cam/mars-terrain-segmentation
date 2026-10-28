@@ -27,9 +27,10 @@ def iou_from_confusion(cm): # works on all 4 classes at once (vectorising)
     return iou, torch.nanmean(iou) # a class with no data at all (0/0 = nan) is left out of the average
 
 
-# test 
-labels = torch.tensor([[0, 0, 1, 255]])
-preds = torch.tensor([[0, 1, 1, 2]])
-cm = confusion_matrix(preds, labels)
-print(cm) 
-print(iou_from_confusion(cm)) # tensor([0.5, 0.5, nan, nan]), tensor(0.5)
+if __name__ == "__main__":
+    # test 
+    labels = torch.tensor([[0, 0, 1, 255]])
+    preds = torch.tensor([[0, 1, 1, 2]])
+    cm = confusion_matrix(preds, labels)
+    print(cm) 
+    print(iou_from_confusion(cm)) # tensor([0.5, 0.5, nan, nan]), tensor(0.5)
