@@ -7,6 +7,7 @@ from src.metrics import confusion_matrix, iou_from_confusion
 from src.dataset import build_pairs, split_pairs, MarsTerrainDataset
 from src.unet import UNet 
 from pathlib import Path 
+import time
 import json 
 import argparse
 
@@ -68,6 +69,7 @@ def parse_args():
     p.add_argument("--data_dir", required=True)
     p.add_argument("--out_dir", default="outputs")
     p.add_argument("--epochs", type=int, default=20)
+    p.add_argument("--num_workers", type=int, default=0)
     p.add_argument("--batch_size", type=int, default=8)
     p.add_argument("--lr", type=float, default=1e-3)
     p.add_argument("--size", type=int, default=512)
@@ -102,8 +104,8 @@ def main(): # no args, creates everything itself and then runs the training
     train_data = MarsTerrainDataset(train_pairs, size=args.size)
     val_data = MarsTerrainDataset(val_pairs, size=args.size)
 
-    train_loader = DataLoader(dataset=train_data, batch_size=args.batch_size, shuffle=True)
-    val_loader = DataLoader(dataset=val_data, batch_size=args.batch_size, shuffle=False)
+    train_loader = DataLoader(dataset=train_data, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers)
+    val_loader = DataLoader(dataset=val_data, batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers)
 
     # model, loss, optimizer, scheduler
     model = UNet().to(device)
@@ -129,12 +131,14 @@ def main(): # no args, creates everything itself and then runs the training
 
     # epoch loop 
     for epoch in range(start_epoch, args.epochs):
+        start = time.time()
         train_loss = train_one_epoch(model, train_loader, loss_fn, optimizer, device)
         val_loss, iou, miou = evaluate(model, val_loader, loss_fn, device)
+        elapsed = time.time() - start
         scheduler.step()
 
         iou_str = [round(x, 3) for x in iou.tolist()] # its a tensor with 4 values, turn it into a list of rounded numbers
-        print(f"Epoch number: {epoch}, Train loss: {train_loss:.4f}, Validation loss: {val_loss:.4f}, mIoU: {miou:.4f}, IoU: {iou_str}") # epoch, train loss, val loss, mIoU
+        print(f"Epoch number: {epoch}, Elapsed time: {elapsed:.0f}s, Train loss: {train_loss:.4f}, Validation loss: {val_loss:.4f}, mIoU: {miou:.4f}, IoU: {iou_str}") # epoch, train loss, val loss, mIoU
         history.append({
             "epoch": epoch,
             "train_loss": train_loss, 
