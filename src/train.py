@@ -13,25 +13,27 @@ import argparse
 
 # trains on ~14,300 training images, on Colab’s GPU
 #the overfitting loop, generalized to go through all the batches of a DataLoader 
-def train_one_epoch(model, loader, loss_fn, optimizer, device):
+def train_one_epoch(model, loader, loss_fn, optimizer, device, scaler, use_amp):
     # one pass over the training set → returns the average training loss
     model.train()
     total_loss = 0.0
     for imgs, lbls in loader:
         imgs, lbls = imgs.to(device), lbls.to(device)
-        preds = model(imgs)
-        loss = loss_fn(preds, lbls)
+        with torch.autocast(device_type=device.type, dtype=torch.float16, enabled=use_amp):
+            preds = model(imgs)
+            loss = loss_fn(preds, lbls)
         # clear old gradients → compute new ones → step
         optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
+        scaler.scale(loss).backward()
+        scaler.step(optimizer)
+        scaler.update()
         total_loss += loss.item()
     return total_loss / len(loader) # average loss per batch
 
 
 # evaluate on the validation set after every epoch (loss + mIoU)
 # returns three things: the average validation loss, the per-class IoU, and the mIoU
-def evaluate(model, loader, loss_fn, device, num_classes=4):
+def evaluate(model, loader, loss_fn, device, use_amp, num_classes=4):
     # one pass over the validation set, no gradients
     # → returns the average validation loss, per-class IoU, and mIoU
     model.eval()
@@ -40,8 +42,9 @@ def evaluate(model, loader, loss_fn, device, num_classes=4):
     with torch.no_grad(): # no training happens, no gradient 
         for imgs, lbls in loader:
             imgs, lbls = imgs.to(device), lbls.to(device)
-            preds = model(imgs)
-            loss = loss_fn(preds, lbls)
+            with torch.autocast(device_type=device.type, dtype=torch.float16, enabled=use_amp):
+                preds = model(imgs)
+                loss = loss_fn(preds, lbls)
             total_loss += loss.item()
             # so that this batch's predictions and labels are a 4x4 table first and cm lives on the CPU 
             cm += confusion_matrix(preds.argmax(dim=1), lbls).cpu() 
@@ -92,6 +95,11 @@ def main(): # no args, creates everything itself and then runs the training
     out_dir.mkdir(parents=True, exist_ok=True) # create the output folder 
     
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    use_amp = device.type == "cuda" # AMP only on the GPU 
+    # make gradients large enough to survive 
+    scaler = torch.amp.GradScaler(enabled=use_amp) 
+    # multiplies the loss by a big number before backward(), and divide back before the optimizer
+
 
     # data 
     data_dir = Path(args.data_dir)
@@ -132,8 +140,8 @@ def main(): # no args, creates everything itself and then runs the training
     # epoch loop 
     for epoch in range(start_epoch, args.epochs):
         start = time.time()
-        train_loss = train_one_epoch(model, train_loader, loss_fn, optimizer, device)
-        val_loss, iou, miou = evaluate(model, val_loader, loss_fn, device)
+        train_loss = train_one_epoch(model, train_loader, loss_fn, optimizer, device, scaler, use_amp)
+        val_loss, iou, miou = evaluate(model, val_loader, loss_fn, device, use_amp)
         elapsed = time.time() - start
         scheduler.step()
 
