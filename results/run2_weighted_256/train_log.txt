@@ -1,0 +1,54 @@
+Epoch number: 0, Elapsed time: 409s, Train loss: 0.7237, Validation loss: 0.6380, mIoU: 0.5106, IoU: [0.7, 0.742, 0.519, 0.081]
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/best.pth
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/last.pth
+Epoch number: 1, Elapsed time: 418s, Train loss: 0.5433, Validation loss: 0.5000, mIoU: 0.5690, IoU: [0.705, 0.775, 0.627, 0.169]
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/best.pth
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/last.pth
+Epoch number: 2, Elapsed time: 416s, Train loss: 0.4651, Validation loss: 0.4041, mIoU: 0.6394, IoU: [0.84, 0.849, 0.668, 0.2]
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/best.pth
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/last.pth
+Epoch number: 3, Elapsed time: 415s, Train loss: 0.4055, Validation loss: 0.4585, mIoU: 0.5614, IoU: [0.743, 0.809, 0.534, 0.159]
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/last.pth
+Epoch number: 4, Elapsed time: 412s, Train loss: 0.3523, Validation loss: 0.2804, mIoU: 0.7121, IoU: [0.879, 0.893, 0.767, 0.309]
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/best.pth
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/last.pth
+Epoch number: 5, Elapsed time: 414s, Train loss: 0.3130, Validation loss: 0.2957, mIoU: 0.7126, IoU: [0.87, 0.896, 0.756, 0.329]
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/best.pth
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/last.pth
+Epoch number: 6, Elapsed time: 412s, Train loss: 0.2828, Validation loss: 0.2517, mIoU: 0.7068, IoU: [0.899, 0.882, 0.737, 0.309]
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/last.pth
+Epoch number: 7, Elapsed time: 414s, Train loss: 0.2644, Validation loss: 0.2639, mIoU: 0.6950, IoU: [0.901, 0.869, 0.801, 0.21]
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/last.pth
+Epoch number: 8, Elapsed time: 411s, Train loss: 0.2413, Validation loss: 0.2596, mIoU: 0.7227, IoU: [0.881, 0.9, 0.762, 0.348]
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/best.pth
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/last.pth
+Epoch number: 9, Elapsed time: 413s, Train loss: 0.2259, Validation loss: 0.2119, mIoU: 0.7261, IoU: [0.906, 0.895, 0.825, 0.278]
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/best.pth
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/last.pth
+Epoch number: 10, Elapsed time: 421s, Train loss: 0.2151, Validation loss: 0.1955, mIoU: 0.7487, IoU: [0.91, 0.907, 0.828, 0.35]
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/best.pth
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/last.pth
+Epoch number: 11, Elapsed time: 419s, Train loss: 0.2009, Validation loss: 0.1897, mIoU: 0.7657, IoU: [0.91, 0.919, 0.85, 0.383]
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/best.pth
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/last.pth
+Epoch number: 12, Elapsed time: 420s, Train loss: 0.1862, Validation loss: 0.1851, mIoU: 0.7410, IoU: [0.916, 0.899, 0.832, 0.317]
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/last.pth
+Epoch number: 13, Elapsed time: 419s, Train loss: 0.1746, Validation loss: 0.1833, mIoU: 0.7698, IoU: [0.913, 0.923, 0.817, 0.426]
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/best.pth
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/last.pth
+Epoch number: 14, Elapsed time: 418s, Train loss: 0.1686, Validation loss: 0.1767, mIoU: 0.7791, IoU: [0.918, 0.929, 0.846, 0.424]
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/best.pth
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/last.pth
+Epoch number: 15, Elapsed time: 419s, Train loss: 0.1604, Validation loss: 0.1756, mIoU: 0.7666, IoU: [0.92, 0.918, 0.837, 0.391]
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/last.pth
+Epoch number: 16, Elapsed time: 421s, Train loss: 0.1535, Validation loss: 0.1746, mIoU: 0.7786, IoU: [0.92, 0.922, 0.851, 0.421]
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/last.pth
+Epoch number: 17, Elapsed time: 418s, Train loss: 0.1472, Validation loss: 0.1662, mIoU: 0.7854, IoU: [0.923, 0.928, 0.844, 0.447]
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/best.pth
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/last.pth
+Epoch number: 18, Elapsed time: 419s, Train loss: 0.1432, Validation loss: 0.1713, mIoU: 0.7888, IoU: [0.92, 0.922, 0.858, 0.455]
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/best.pth
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/last.pth
+Epoch number: 19, Elapsed time: 419s, Train loss: 0.1403, Validation loss: 0.1628, mIoU: 0.7972, IoU: [0.927, 0.931, 0.866, 0.465]
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/best.pth
+Saved checkpoint to /content/drive/MyDrive/mars_runs/run2_weighted_256/last.pth
