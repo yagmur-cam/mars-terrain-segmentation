@@ -75,6 +75,7 @@ def parse_args():
     p.add_argument("--out_dir", default="outputs")
     p.add_argument("--epochs", type=int, default=20)
     p.add_argument("--num_workers", type=int, default=0)
+    p.add_argument("--weighted", action="store_true")
     p.add_argument("--batch_size", type=int, default=8)
     p.add_argument("--lr", type=float, default=1e-3)
     p.add_argument("--size", type=int, default=512)
@@ -119,7 +120,13 @@ def main(): # no args, creates everything itself and then runs the training
 
     # model, loss, optimizer, scheduler
     model = UNet().to(device)
-    loss_fn = nn.CrossEntropyLoss(ignore_index=255)
+
+    if args.weighted:
+        weights = torch.tensor([0.37, 0.32, 0.70, 2.61], dtype=torch.float32).to(device)
+        loss_fn = nn.CrossEntropyLoss(weight=weights, ignore_index=255)
+    else:
+        loss_fn = nn.CrossEntropyLoss(ignore_index=255)
+
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr) # not a fixed learning rate but scheduled
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=args.epochs)
     
