@@ -141,6 +141,7 @@ def main(): # no args, creates everything itself and then runs the training
         start_epoch = ckpt["epoch"] + 1
         scheduler.load_state_dict(ckpt["scheduler"])
         best_miou = ckpt["best_miou"]
+        print(f"Resuming from epoch {start_epoch}, best mIoU so far {best_miou:.4f}")
 
         if (out_dir / "history.json").exists():
             with open(out_dir / "history.json", "r") as f:
